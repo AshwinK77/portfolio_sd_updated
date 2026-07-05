@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adaptive Kalman Filter Dashboard | Ashwin Kumar Rangarajan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="nav"><div class="container nav-inner"><a class="logo" href="../index.html"><span class="logo-mark">AK</span><span>Ashwin K. Rangarajan</span></a><nav class="nav-links"><a href="../index.html#projects">Projects</a><a href="../index.html#domains">Domains</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></nav><button class="btn small mobile-menu" data-mobile-toggle>Menu</button></div></header>
+  <main>
+    <section class="project-hero"><div class="container"><div class="breadcrumb"><a href="../index.html">Home</a> / Projects</div><span class="kicker">Research + Software Visualization</span><h1>Adaptive Kalman Filter Dashboard</h1><p class="lede">A dashboard for tuning process/measurement noise, comparing fixed and adaptive filters, and visualizing consistency diagnostics such as NIS and 3σ bounds.</p><div class="tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Kalman Filter</span><span class="tag">EKF</span><span class="tag">NIS</span><span class="tag">State Estimation</span></div><div class="hero-actions"><a class="btn primary" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">View GitHub</a><a class="btn" href="../index.html#projects">Back to Projects</a></div></div></section>
+    <section class="section"><div class="container project-layout">
+      <aside class="sidebar"><div class="card"><strong>Case Study Sections</strong><a href="#problem">Problem</a><a href="#architecture">Architecture</a><a href="#features">Features</a><a href="#validation">Validation</a><a href="#layout">GUI Layout</a><a href="#next">Next Steps</a></div></aside>
+      <article class="card content-card">
+        <section id="problem"><h2>1. Engineering Problem</h2><p>State-estimation work is difficult for recruiters to understand unless the filter behavior is visual. This dashboard makes Q/R tuning, innovation consistency, and estimation confidence easy to see.</p><div class="callout"><strong>Portfolio goal:</strong> Make the project read like an engineering tool used for integration, validation, debugging, or controls development — not just a classroom exercise.</div></section>
+        <section id="architecture"><h2>2. System Architecture</h2><div class="diagram">Vehicle Sensor Data / Simulated Truth
+        ↓
+Measurement Model + Vehicle Model
+        ↓
+Fixed KF / Adaptive KF / EKF
+        ↓
+State Estimates + Innovations + Covariance
+        ↓
+RMSE, NIS, 3σ, Overconfidence Diagnostics</div></section>
+        <section id="features"><h2>3. Core Features</h2><div class="split"><div><h3>Tool Features</h3><ul><li>Load yaw-rate, lateral acceleration, steering, speed, and sideslip data</li><li>Tune Q and R interactively</li><li>Compare measured vs estimated vs ground truth</li><li>Show innovation and residual plots</li><li>Evaluate NIS pass rate and 3σ consistency</li></ul></div><div><h3>Validation Metrics</h3><ul><li>RMSE reduction</li><li>NIS pass rate</li><li>Innovation whiteness indicator</li><li>3σ containment</li><li>Runtime per dataset</li></ul></div></div></section>
+        <section id="validation"><h2>4. Validation Evidence to Include</h2><p>For the final version, add screenshots/GIFs, sample input files, test-case screenshots, plots, and a short report. A recruiter should be able to see the inputs, processing workflow, outputs, and engineering decision.</p><ul><li>Architecture diagram</li><li>Sample data folder</li><li>README with setup instructions</li><li>Screenshot/GIF of the GUI</li><li>Validation report or results table</li></ul></section>
+        <section id="layout"><h2>5. GUI / Dashboard Mock Layout</h2><div class="mock-screen"><div class="mock-top"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div><div class="mock-body"><div class="diagram">Controls: Q scale | R scale | Filter type | Sensor selection
+Plots: Truth vs Sensor vs Estimate | Innovation | NIS bounds
+Summary: Filter is overconfident / conservative / consistent</div><div class="bar w85"></div><div class="bar w55"></div><div class="bar w70"></div><div class="bar w35"></div></div></div></section>
+        <section id="next"><h2>6. Build Checklist</h2><ul><li>Create the public GitHub repository with this exact project name.</li><li>Add <code>README.md</code>, <code>requirements.txt</code>, <code>src/</code>, <code>data/sample/</code>, <code>assets/screenshots/</code>, and <code>docs/</code>.</li><li>Add one small working demo before adding advanced features.</li><li>Record a 20–40 second GIF of the GUI and place it at the top of the README.</li><li>Link the repo from the portfolio homepage.</li></ul></section>
+      </article>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="container footer-grid"><div><strong>Ashwin Kumar Rangarajan</strong><br/>Automotive Controls & Software Systems Engineer</div><div><a class="btn" href="mailto:ashwintwister@gmail.com">Email</a> <a class="btn" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">GitHub</a></div><div>© <span data-year></span></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

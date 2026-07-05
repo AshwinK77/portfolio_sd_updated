@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ashwin Kumar Rangarajan | Automotive Controls & Software Systems Engineer</title>
+  <meta name="description" content="Automotive controls and software systems portfolio focused on SDV integration, validation, CAN diagnostics, telemetry, HIL testing, and vehicle controls." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#top"><span class="logo-mark">AK</span><span>Ashwin K. Rangarajan</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#domains">Domains</a>
+        <a href="#experience">Experience</a>
+        <a href="#github">GitHub</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="btn small mobile-menu" data-mobile-toggle>Menu</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> SDV Integration · Controls · Validation</span>
+          <h1>Automotive Controls & Software Systems Engineer</h1>
+          <p class="lede">I work on integration and validation of software-defined vehicles, with a focus on vehicle controls, CAN diagnostics, HIL and vehicle-level testing, telemetry analysis, and software release readiness.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="#contact">Contact</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Dashboard preview">
+          <div class="dashboard-preview">
+            <div class="metric-row">
+              <div class="metric"><div class="label">Release Readiness</div><div class="value good">87%</div></div>
+              <div class="metric"><div class="label">Signal Health</div><div class="value">94%</div></div>
+              <div class="metric"><div class="label">Open Defects</div><div class="value warn">7</div></div>
+              <div class="metric"><div class="label">Critical Failures</div><div class="value hot">2</div></div>
+            </div>
+            <div class="trace">
+              <div><span>Signal</span><span>Status</span><span>Check</span></div>
+              <div><span>brake_pressure</span><span>PASS</span><span>range</span></div>
+              <div><span>steer_angle</span><span>WARN</span><span>timeout</span></div>
+              <div><span>vehicle_speed</span><span>PASS</span><span>sanity</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Featured Engineering Work</span>
+            <h2>Automotive + software portfolio layout</h2>
+            <p class="intro">Project cards are ordered to show SDV validation first, then CAN/software tools, then controls and estimation depth.</p>
+          </div>
+        </div>
+        <div class="grid cards">
+          <article class="card">
+            <span class="kicker">Flagship</span>
+            <h3>SDV Validation Dashboard</h3>
+            <p>Release readiness dashboard using test results, vehicle telemetry, signal health, and defect status.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">SQLite</span></div>
+            <div class="card-actions"><a class="btn small primary" href="projects/sdv-validation-dashboard.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+          </article>
+          <article class="card">
+            <span class="kicker">Vehicle Networks</span>
+            <h3>CAN Signal Viewer GUI</h3>
+            <p>DBC-based CAN/CAN FD log decoder with trace table, signal plots, filters, and validation rules.</p>
+            <div class="tags"><span class="tag">PyQt</span><span class="tag">cantools</span><span class="tag">CAN</span><span class="tag">DBC</span></div>
+            <div class="card-actions"><a class="btn small primary" href="projects/can-signal-viewer-gui.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+          </article>
+          <article class="card">
+            <span class="kicker">Validation</span>
+            <h3>HIL Test Automation Suite</h3>
+            <p>YAML-driven test-case runner for HIL and bench validation with requirements traceability and reports.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">pytest</span><span class="tag">YAML</span><span class="tag">Reports</span></div>
+            <div class="card-actions"><a class="btn small primary" href="projects/hil-test-automation-suite.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+          </article>
+          <article class="card">
+            <span class="kicker">Controls</span>
+            <h3>Vehicle Controls Simulator</h3>
+            <p>Bicycle-model simulation GUI for step steer, sine-with-dwell, DLC, yaw control, and torque allocation.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">SciPy</span><span class="tag">LQR</span><span class="tag">Vehicle Dynamics</span></div>
+            <div class="card-actions"><a class="btn small primary" href="projects/vehicle-controls-simulator.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+          </article>
+          <article class="card">
+            <span class="kicker">Estimation</span>
+            <h3>Adaptive Kalman Filter Dashboard</h3>
+            <p>Interactive Q/R tuning, NIS consistency, RMSE, innovation analysis, and 3σ confidence visualization.</p>
+            <div class="tags"><span class="tag">KF</span><span class="tag">EKF</span><span class="tag">NIS</span><span class="tag">Plotly</span></div>
+            <div class="card-actions"><a class="btn small primary" href="projects/adaptive-kalman-filter-dashboard.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+          </article>
+          <article class="card">
+            <span class="kicker">Existing Project</span>
+            <h3>MoTeC C1812 HMI + CAN Diagnostics</h3>
+            <p>Driver-focused vehicle HMI using CAN-based real-time diagnostics, alerts, and steering-button navigation.</p>
+            <div class="tags"><span class="tag">MoTeC</span><span class="tag">CAN</span><span class="tag">HMI</span><span class="tag">Regression</span></div>
+            <div class="card-actions"><a class="btn small primary" href="projects/motec-hmi-can-diagnostics.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="domains">
+      <div class="container">
+        <span class="kicker">Engineering Stack</span>
+        <h2>Organize skills by hiring signal</h2>
+        <p class="intro">This structure helps recruiters quickly map your background to automotive controls, SDV software systems, and integration/validation roles.</p>
+        <div class="domain-grid" style="margin-top:24px">
+          <div class="card domain"><h3>Automotive Systems</h3><ul><li>Vehicle dynamics</li><li>Chassis controls</li><li>Brake and steering systems</li><li>EV and thermal systems</li></ul></div>
+          <div class="card domain"><h3>Software Tooling</h3><ul><li>Python dashboards</li><li>Git/GitHub workflows</li><li>Data pipelines</li><li>Docker-ready apps</li></ul></div>
+          <div class="card domain"><h3>Validation</h3><ul><li>MIL/SIL/HIL</li><li>Regression testing</li><li>Test automation</li><li>Release readiness</li></ul></div>
+          <div class="card domain"><h3>Networks & Data</h3><ul><li>CAN/CAN FD/DBC</li><li>UDS/Ethernet concepts</li><li>Telemetry logs</li><li>Signal health checks</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <span class="kicker">Experience Narrative</span>
+        <h2>Tell the story as integration → controls → validation</h2>
+        <div class="timeline" style="margin-top:24px">
+          <div class="timeline-item"><div class="time">Current</div><div class="card timeline-card"><h3>Systems Integration Engineer · Rivian Volkswagen Group Tech</h3><p>Integration and validation of software-defined vehicle functions, software release readiness, telemetry analysis, issue triage, and cross-functional validation.</p></div></div>
+          <div class="timeline-item"><div class="time">2025</div><div class="card timeline-card"><h3>Chassis Controls Intern · Ford Research & Advanced Engineering</h3><p>Steer-by-wire controls, redundancy strategy, HIL/vehicle validation, calibration, and CAN/EPAS integration on a research platform.</p></div></div>
+          <div class="timeline-item"><div class="time">2024</div><div class="card timeline-card"><h3>Research Assistant · Clemson University</h3><p>Vehicle dynamics testing, DAQ, state estimation, proving-ground validation, and research on adaptive filtering for vehicle state estimation.</p></div></div>
+          <div class="timeline-item"><div class="time">2018–2023</div><div class="card timeline-card"><h3>Chassis Testing & Validation · Royal Enfield</h3><p>ABS calibration, homologation, DVPR execution, prototype validation, root-cause analysis, and global motorcycle platform launch support.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="github">
+      <div class="container">
+        <span class="kicker">GitHub Structure</span>
+        <h2>Pinned repositories that sell the right profile</h2>
+        <p class="intro">Replace placeholder repo links with your actual repos as you build them. This static site is ready for GitHub Pages publishing.</p>
+        <table class="repo-table" aria-label="Recommended repositories">
+          <thead><tr><th>Repository</th><th>Purpose</th><th>Stack</th></tr></thead>
+          <tbody>
+            <tr><td>sdv-validation-dashboard</td><td>Release readiness, test status, defects, signal health</td><td>Python · Streamlit · Plotly · SQLite</td></tr>
+            <tr><td>can-signal-viewer-gui</td><td>DBC decoding, CAN trace, signal plotting, validation checks</td><td>PyQt · cantools · pandas</td></tr>
+            <tr><td>hil-test-automation-suite</td><td>YAML test cases, simulated HIL execution, reports</td><td>Python · pytest · Jinja2</td></tr>
+            <tr><td>vehicle-controls-simulator</td><td>Vehicle dynamics, yaw control, DYC visualization</td><td>Python · SciPy · Plotly</td></tr>
+            <tr><td>adaptive-kalman-filter-dashboard</td><td>State estimation tuning and consistency diagnostics</td><td>Python · NumPy · Streamlit</td></tr>
+            <tr><td>telemetry-log-analyzer</td><td>KPI extraction, anomaly detection, engineering summary</td><td>pandas · Plotly · SQLite</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div><strong>Ashwin Kumar Rangarajan</strong><br/>Automotive Controls & Software Systems Engineer<br/>Irvine, CA · Open to SDV, controls, validation, and systems roles</div>
+      <div><a class="btn" href="mailto:ashwintwister@gmail.com">Email</a> <a class="btn" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">GitHub</a></div>
+      <div>© <span data-year></span> · Built for GitHub Pages</div>
+    </div>
+  </footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>
