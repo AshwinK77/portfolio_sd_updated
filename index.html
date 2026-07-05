@@ -1,173 +1,870 @@
 <!doctype html>
 <html lang="en">
+
+
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ashwin Kumar Rangarajan | Automotive Controls & Software Systems Engineer</title>
-  <meta name="description" content="Automotive controls and software systems portfolio focused on SDV integration, validation, CAN diagnostics, telemetry, HIL testing, and vehicle controls." />
+  <meta name="description"
+    content="Automotive controls and software systems portfolio focused on software-defined vehicle integration, validation, CAN diagnostics, HIL testing, telemetry, ECU bring-up, and vehicle motion controls." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/styles.css" />
+
 </head>
+
+
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="logo" href="#top"><span class="logo-mark">AK</span><span>Ashwin K. Rangarajan</span></a>
+      <a class="logo" href="#top">
+        <span class="logo-mark">AK</span>
+        <span>Ashwin Kumar Rangarajan</span>
+      </a>
+
       <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#domains">Domains</a>
+        <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
-        <a href="#github">GitHub</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
+
       <button class="btn small mobile-menu" data-mobile-toggle>Menu</button>
     </div>
   </header>
 
   <main id="top">
+
+    <!-- HERO SECTION -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow"><span class="dot"></span> SDV Integration · Controls · Validation</span>
+          <span class="eyebrow">
+            <span class="dot"></span>
+            SDV Integration · Controls · Validation
+          </span>
+
           <h1>Automotive Controls & Software Systems Engineer</h1>
-          <p class="lede">I work on integration and validation of software-defined vehicles, with a focus on vehicle controls, CAN diagnostics, HIL and vehicle-level testing, telemetry analysis, and software release readiness.</p>
+
+          <p class="lede">
+            I work on integration and validation of software-defined vehicles, with a focus on
+            vehicle motion controls, propulsion control software, CAN/LIN/UDS diagnostics,
+            HIL and in-vehicle validation, telemetry analysis, and software release readiness.
+          </p>
+
+          <p class="hero-tags">
+            Vehicle Controls · SDV Integration · HIL Validation · CAN Diagnostics · OTA Release Validation
+          </p>
+
           <div class="hero-actions">
             <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="btn" href="#contact">Contact</a>
+            <a class="btn" href="documents/Ashwin_Rangarajan_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            <a class="btn" href="https://github.com/AshwinK77/portfolio_sd_updated" target="_blank"
+              rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/ashwin-kumar-rangarajan/" target="_blank"
+              rel="noreferrer">LinkedIn</a>
           </div>
         </div>
-        <aside class="hero-card" aria-label="Dashboard preview">
-          <div class="dashboard-preview">
-            <div class="metric-row">
-              <div class="metric"><div class="label">Release Readiness</div><div class="value good">87%</div></div>
-              <div class="metric"><div class="label">Signal Health</div><div class="value">94%</div></div>
-              <div class="metric"><div class="label">Open Defects</div><div class="value warn">7</div></div>
-              <div class="metric"><div class="label">Critical Failures</div><div class="value hot">2</div></div>
+
+        <aside class="hero-card sdv-dashboard-card" aria-label="SDV validation dashboard preview">
+          <div class="sdv-mini-dashboard">
+
+            <div class="sdv-topbar">
+              <div>
+                <h3>SDV Validation Dashboard</h3>
+                <p>Real-time software validation overview</p>
+              </div>
+              <span class="system-pill">
+                <span class="online-dot"></span>
+                Online
+              </span>
             </div>
-            <div class="trace">
-              <div><span>Signal</span><span>Status</span><span>Check</span></div>
-              <div><span>brake_pressure</span><span>PASS</span><span>range</span></div>
-              <div><span>steer_angle</span><span>WARN</span><span>timeout</span></div>
-              <div><span>vehicle_speed</span><span>PASS</span><span>sanity</span></div>
+
+            <div class="sdv-kpi-grid">
+              <div class="sdv-kpi">
+                <span>Release Readiness</span>
+                <strong class="cyan">87%</strong>
+                <small>+5% vs yesterday</small>
+              </div>
+
+              <div class="sdv-kpi">
+                <span>Signal Health</span>
+                <strong class="blue">94%</strong>
+                <small>+2% vs yesterday</small>
+              </div>
+
+              <div class="sdv-kpi">
+                <span>Open Defects</span>
+                <strong class="amber">7</strong>
+                <small>-2 vs yesterday</small>
+              </div>
+
+              <div class="sdv-kpi">
+                <span>Critical Failures</span>
+                <strong class="red">2</strong>
+                <small>+1 vs yesterday</small>
+              </div>
             </div>
+
+            <div class="sdv-dashboard-body">
+              <div class="trend-panel">
+                <div class="panel-head">
+                  <span>Validation Trend</span>
+                  <div class="range-tabs">
+                    <button>7D</button>
+                    <button class="active">30D</button>
+                    <button>90D</button>
+                  </div>
+                </div>
+
+                <div class="trend-chart">
+                  <div class="chart-line line-one"></div>
+                  <div class="chart-line line-two"></div>
+                  <div class="chart-grid"></div>
+                </div>
+
+                <div class="chart-legend">
+                  <span><i class="legend-cyan"></i> Release Readiness</span>
+                  <span><i class="legend-blue"></i> Signal Health</span>
+                </div>
+              </div>
+
+              <div class="status-panel">
+                <span>Overall Status</span>
+                <div class="gauge">
+                  <div class="gauge-inner">
+                    <strong>88%</strong>
+                    <small>GOOD</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="checks-panel">
+              <div class="panel-head">
+                <span>Recent Checks</span>
+                <small>Updated now</small>
+              </div>
+
+              <div class="check-row">
+                <span>brake_pressure</span>
+                <b class="pass">PASS</b>
+                <em>In range</em>
+              </div>
+
+              <div class="check-row">
+                <span>steer_angle</span>
+                <b class="warn">WARN</b>
+                <em>Timeout</em>
+              </div>
+
+              <div class="check-row">
+                <span>vehicle_speed</span>
+                <b class="pass">PASS</b>
+                <em>Within bounds</em>
+              </div>
+            </div>
+
           </div>
         </aside>
       </div>
     </section>
 
+    <!-- ABOUT SECTION -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">About</span>
+            <h2>Bridging vehicle controls, embedded software, and SDV validation.
+            </h2>
+            <p class="intro">
+              Automotive controls and systems integration engineer with 6+ years of experience in vehicle motion control
+              development, validation, and integration, spanning steer-by-wire, brake-by-wire, torque vectoring, ECU
+              bring-up, diagnostics, MIL/SIL/HIL, and safety-critical vehicle testing.
+
+            </p>
+            <p class="intro">
+              Currently focused on SDV control software integration and validation, including feature validation,
+              regression testing, OTA release readiness, supplier ECU updates, and cross-functional issue triage.
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED ENGINEERING WORK -->
     <section class="section" id="projects">
       <div class="container">
         <div class="section-head">
           <div>
             <span class="kicker">Featured Engineering Work</span>
-            <h2>Automotive + software portfolio layout</h2>
-            <p class="intro">Project cards are ordered to show SDV validation first, then CAN/software tools, then controls and estimation depth.</p>
+            <h2>Software-defined vehicle validation, controls integration, and automotive software tools.</h2>
+            <p class="intro">
+              A focused set of projects spanning vehicle controls, software integration,
+              diagnostics, HIL validation, telemetry analysis, and engineering release workflows.
+            </p>
           </div>
         </div>
+
         <div class="grid cards">
+
           <article class="card">
-            <span class="kicker">Flagship</span>
-            <h3>SDV Validation Dashboard</h3>
-            <p>Release readiness dashboard using test results, vehicle telemetry, signal health, and defect status.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">SQLite</span></div>
-            <div class="card-actions"><a class="btn small primary" href="projects/sdv-validation-dashboard.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+            <span class="kicker">S/W Integration · Release Validation</span>
+            <h3>Vehicle Motion Controls Release Validation</h3>
+            <p>
+              Feature-level and regression validation workflow for software-defined vehicle motion
+              and propulsion control software, supporting OTA releases, merge releases, supplier ECU
+              firmware updates, and release-readiness decisions.
+            </p>
+            <div class="tags">
+              <span class="tag">SDV Validation</span>
+              <span class="tag">OTA Releases</span>
+              <span class="tag">Regression Testing</span>
+              <span class="tag">JAMA</span>
+              <span class="tag">JIRA</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn small primary" href="projects/sdv-validation-dashboard.html">Case Study</a>
+              <a class="btn small" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
           </article>
+
           <article class="card">
-            <span class="kicker">Vehicle Networks</span>
-            <h3>CAN Signal Viewer GUI</h3>
-            <p>DBC-based CAN/CAN FD log decoder with trace table, signal plots, filters, and validation rules.</p>
-            <div class="tags"><span class="tag">PyQt</span><span class="tag">cantools</span><span class="tag">CAN</span><span class="tag">DBC</span></div>
-            <div class="card-actions"><a class="btn small primary" href="projects/can-signal-viewer-gui.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+            <span class="kicker">Steer-by-Wire · Controls Software</span>
+            <h3>Dual-Redundant Steer-by-Wire Validation</h3>
+            <p>
+              Deployment and real-time validation of a dual-redundant steer-by-wire platform,
+              including control software integration, CAN interface validation, calibration changes,
+              redundancy behavior, and proving-ground verification.
+            </p>
+            <div class="tags">
+              <span class="tag">Steer-by-Wire</span>
+              <span class="tag">dSPACE</span>
+              <span class="tag">MicroAutoBox</span>
+              <span class="tag">CAN</span>
+              <span class="tag">HIL</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn small primary" href="projects/steer-by-wire-validation.html">Case Study</a>
+              <a class="btn small" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
           </article>
+
           <article class="card">
-            <span class="kicker">Validation</span>
-            <h3>HIL Test Automation Suite</h3>
-            <p>YAML-driven test-case runner for HIL and bench validation with requirements traceability and reports.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">pytest</span><span class="tag">YAML</span><span class="tag">Reports</span></div>
-            <div class="card-actions"><a class="btn small primary" href="projects/hil-test-automation-suite.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+            <span class="kicker">Vehicle Networks · Diagnostics</span>
+            <h3>CAN/LIN/UDS Interface Validation</h3>
+            <p>
+              Diagnostic and network validation workflow for ECU interface changes across CAN,
+              LIN, UDS, and Automotive Ethernet, with signal checks, communication debugging,
+              traceability, and Python-based post-processing.
+            </p>
+            <div class="tags">
+              <span class="tag">CAN FD</span>
+              <span class="tag">LIN</span>
+              <span class="tag">UDS</span>
+              <span class="tag">Ethernet</span>
+              <span class="tag">Python</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn small primary" href="projects/can-signal-viewer-gui.html">Case Study</a>
+              <a class="btn small" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
           </article>
+
           <article class="card">
-            <span class="kicker">Controls</span>
-            <h3>Vehicle Controls Simulator</h3>
-            <p>Bicycle-model simulation GUI for step steer, sine-with-dwell, DLC, yaw control, and torque allocation.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">SciPy</span><span class="tag">LQR</span><span class="tag">Vehicle Dynamics</span></div>
-            <div class="card-actions"><a class="btn small primary" href="projects/vehicle-controls-simulator.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+            <span class="kicker">HIL · Fault Injection</span>
+            <h3>Brake-by-Wire & Active Suspension HIL Validation</h3>
+            <p>
+              MIL/HIL validation workflow for brake-by-wire and active suspension systems,
+              mapping fault responses to test cases, fault-injection scenarios, fail-safe behavior,
+              and ISO 26262-oriented validation thinking.
+            </p>
+            <div class="tags">
+              <span class="tag">Brake-by-Wire</span>
+              <span class="tag">Active Suspension</span>
+              <span class="tag">MIL/HIL</span>
+              <span class="tag">Fault Injection</span>
+              <span class="tag">ISO 26262</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn small primary" href="projects/hil-test-automation-suite.html">Case Study</a>
+              <a class="btn small" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
           </article>
+
           <article class="card">
-            <span class="kicker">Estimation</span>
-            <h3>Adaptive Kalman Filter Dashboard</h3>
-            <p>Interactive Q/R tuning, NIS consistency, RMSE, innovation analysis, and 3σ confidence visualization.</p>
-            <div class="tags"><span class="tag">KF</span><span class="tag">EKF</span><span class="tag">NIS</span><span class="tag">Plotly</span></div>
-            <div class="card-actions"><a class="btn small primary" href="projects/adaptive-kalman-filter-dashboard.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+            <span class="kicker">Vehicle Dynamics · Motion Control</span>
+            <h3>Direct Yaw Moment Control for Hub-Motor Vehicle</h3>
+            <p>
+              Physics-based vehicle dynamics control strategy for a high-voltage 4-wheel
+              hub-motor vehicle, focused on torque vectoring, yaw stability, model validation,
+              and vehicle response analysis.
+            </p>
+            <div class="tags">
+              <span class="tag">Torque Vectoring</span>
+              <span class="tag">DYC</span>
+              <span class="tag">Vehicle Dynamics</span>
+              <span class="tag">MATLAB</span>
+              <span class="tag">Simulink</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn small primary" href="projects/vehicle-controls-simulator.html">Case Study</a>
+              <a class="btn small" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
           </article>
+
           <article class="card">
-            <span class="kicker">Existing Project</span>
-            <h3>MoTeC C1812 HMI + CAN Diagnostics</h3>
-            <p>Driver-focused vehicle HMI using CAN-based real-time diagnostics, alerts, and steering-button navigation.</p>
-            <div class="tags"><span class="tag">MoTeC</span><span class="tag">CAN</span><span class="tag">HMI</span><span class="tag">Regression</span></div>
-            <div class="card-actions"><a class="btn small primary" href="projects/motec-hmi-can-diagnostics.html">Case Study</a><a class="btn small" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">Repo</a></div>
+            <span class="kicker">Vehicle Testing · Chassis Validation</span>
+            <h3>Chassis Testing, ABS Calibration & Vehicle Instrumentation</h3>
+            <p>
+              Chassis systems integration and verification work spanning ABS calibration,
+              dynamic vehicle testing, sensor instrumentation, root-cause analysis, benchmarking,
+              and validation of design changes across vehicle platforms.
+            </p>
+            <div class="tags">
+              <span class="tag">ABS Calibration</span>
+              <span class="tag">Vehicle Testing</span>
+              <span class="tag">Instrumentation</span>
+              <span class="tag">Root Cause</span>
+              <span class="tag">Validation</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn small primary" href="projects/chassis-testing-validation.html">Case Study</a>
+              <a class="btn small" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
           </article>
+
+          <article class="card">
+            <span class="kicker">HMI · CAN Integration</span>
+            <h3>MoTeC HMI + CAN Diagnostics</h3>
+            <p>
+              A CAN-based vehicle HMI concept using MoTeC C1812 to visualize vehicle states,
+              diagnostic alerts, driver-facing information, and integration signals during
+              prototype vehicle testing.
+            </p>
+            <div class="tags">
+              <span class="tag">MoTeC</span>
+              <span class="tag">CAN</span>
+              <span class="tag">HMI</span>
+              <span class="tag">Diagnostics</span>
+              <span class="tag">Vehicle Integration</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn small primary" href="projects/motec-hmi-can-diagnostics.html">Case Study</a>
+              <a class="btn small" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
 
+    <!-- ENGINEERING METHODOLOGY -->
     <section class="section" id="domains">
       <div class="container">
-        <span class="kicker">Engineering Stack</span>
-        <h2>Organize skills by hiring signal</h2>
-        <p class="intro">This structure helps recruiters quickly map your background to automotive controls, SDV software systems, and integration/validation roles.</p>
-        <div class="domain-grid" style="margin-top:24px">
-          <div class="card domain"><h3>Automotive Systems</h3><ul><li>Vehicle dynamics</li><li>Chassis controls</li><li>Brake and steering systems</li><li>EV and thermal systems</li></ul></div>
-          <div class="card domain"><h3>Software Tooling</h3><ul><li>Python dashboards</li><li>Git/GitHub workflows</li><li>Data pipelines</li><li>Docker-ready apps</li></ul></div>
-          <div class="card domain"><h3>Validation</h3><ul><li>MIL/SIL/HIL</li><li>Regression testing</li><li>Test automation</li><li>Release readiness</li></ul></div>
-          <div class="card domain"><h3>Networks & Data</h3><ul><li>CAN/CAN FD/DBC</li><li>UDS/Ethernet concepts</li><li>Telemetry logs</li><li>Signal health checks</li></ul></div>
+        <span class="kicker">Engineering Methodology</span>
+        <h2>How I approach vehicle controls, software integration, and validation.</h2>
+        <p class="intro">
+          My engineering approach focuses on converting vehicle control requirements into
+          structured, traceable, and release-ready validation workflows across simulation,
+          HIL, dyno, and in-vehicle environments.
+        </p>
+
+        <div class="flip-grid" style="margin-top:24px">
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Requirements-to-Test Translation</h3>
+                <p>Convert control requirements into measurable validation plans.</p>
+              </div>
+              <div class="flip-back">
+                <h3>How I Apply It</h3>
+                <p>
+                  Break down vehicle control requirements into verification steps,
+                  pass/fail criteria, test cases, and release-readiness evidence.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Model-Based Validation</h3>
+                <p>Validate controls from simulation to vehicle-level testing.</p>
+              </div>
+              <div class="flip-back">
+                <h3>How I Apply It</h3>
+                <p>
+                  Validate behavior across MIL, SIL, HIL, Dyno HIL, and vehicle environments
+                  to connect simulation results with real system behavior.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Signal & Interface Verification</h3>
+                <p>Verify vehicle networks, diagnostics, and ECU interfaces.</p>
+              </div>
+              <div class="flip-back">
+                <h3>How I Apply It</h3>
+                <p>
+                  Review CAN/LIN/UDS/Ethernet traces, validate signal behavior,
+                  check timeouts, and debug ECU interface issues.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Regression & Release Readiness</h3>
+                <p>Support SDV releases through repeatable validation workflows.</p>
+              </div>
+              <div class="flip-back">
+                <h3>How I Apply It</h3>
+                <p>
+                  Support OTA and merge releases through regression testing,
+                  defect triage, supplier ECU validation, quality metrics, and sign-off.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Fault Injection & Fail-Safe Validation</h3>
+                <p>Validate degraded modes and safety-critical system responses.</p>
+              </div>
+              <div class="flip-back">
+                <h3>How I Apply It</h3>
+                <p>
+                  Map fault scenarios to expected system behavior, recovery logic,
+                  degraded modes, and fail-safe responses.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Root-Cause Debugging</h3>
+                <p>Use logs, traces, telemetry, and calibration data to isolate issues.</p>
+              </div>
+              <div class="flip-back">
+                <h3>How I Apply It</h3>
+                <p>
+                  Analyze logs, diagnostic traces, telemetry, calibration data, and vehicle
+                  response to collaborate across controls, software, and supplier teams.
+                </p>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
 
+    <!-- APPLICATION SKILLSET -->
+    <section class="section" id="skills">
+      <div class="container">
+        <span class="kicker">Application Skillset</span>
+        <h2>Practical exposure across controls, diagnostics, automation, and validation tools.</h2>
+        <p class="intro">
+          A flash-card view of the tools, protocols, and engineering applications I have used
+          across automotive controls development, SDV software integration, ECU validation,
+          and test automation.
+        </p>
+
+        <div class="flip-grid" style="margin-top:24px">
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Vehicle Controls & Dynamics</h3>
+                <p>Motion-control systems and chassis validation.</p>
+              </div>
+              <div class="flip-back">
+                <h3>Exposure</h3>
+                <p>
+                  Steer-by-wire, brake-by-wire, torque vectoring, semi-active suspension,
+                  chassis controls, propulsion controls, yaw stability, and vehicle dynamics.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Modeling & Simulation</h3>
+                <p>Model-based control development and validation.</p>
+              </div>
+              <div class="flip-back">
+                <h3>Exposure</h3>
+                <p>
+                  MATLAB, Simulink, Stateflow, Embedded Coder, CarSim, plant modeling,
+                  controller verification, MIL, SIL, HIL, and Dyno HIL workflows.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Programming & Automation</h3>
+                <p>Automation, post-processing, and validation tooling.</p>
+              </div>
+              <div class="flip-back">
+                <h3>Exposure</h3>
+                <p>
+                  Python, C/C++, Embedded C, PowerShell, Bash, WSL/Linux,
+                  test automation, telemetry analysis, post-processing, and reporting.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Networks & Diagnostics</h3>
+                <p>Vehicle communication and ECU diagnostics.</p>
+              </div>
+              <div class="flip-back">
+                <h3>Exposure</h3>
+                <p>
+                  CAN, CAN FD, LIN, Automotive Ethernet, UDS, XCP, DBC/A2L workflows,
+                  diagnostic validation, signal monitoring, and ECU interface checks.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>Calibration & Data Tools</h3>
+                <p>Measurement, calibration, and trace-analysis workflows.</p>
+              </div>
+              <div class="flip-back">
+                <h3>Exposure</h3>
+                <p>
+                  Vector CANalyzer, CANape, CANdb++, ASAP2 Studio, dSPACE,
+                  ATI Vision/VDA, calibration review, trace analysis, and data processing.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="flip-card" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <h3>SDV Validation Workflow</h3>
+                <p>Release validation and systems engineering workflows.</p>
+              </div>
+              <div class="flip-back">
+                <h3>Exposure</h3>
+                <p>
+                  ECU bring-up, feature validation, regression testing, OTA validation,
+                  supplier ECU validation, JAMA, JIRA, GitLab/GitHub, CI/CD, Jenkins,
+                  quality metrics, and ISO 26262 fundamentals.
+                </p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
     <section class="section" id="experience">
       <div class="container">
-        <span class="kicker">Experience Narrative</span>
-        <h2>Tell the story as integration → controls → validation</h2>
+        <span class="kicker">Experience</span>
+        <h2>Professional experience across SDV validation, controls software, and vehicle testing.</h2>
+        <p class="intro">
+          My career progression connects production vehicle validation, research controls development,
+          model-based engineering, and software-defined vehicle integration.
+        </p>
+
         <div class="timeline" style="margin-top:24px">
-          <div class="timeline-item"><div class="time">Current</div><div class="card timeline-card"><h3>Systems Integration Engineer · Rivian Volkswagen Group Tech</h3><p>Integration and validation of software-defined vehicle functions, software release readiness, telemetry analysis, issue triage, and cross-functional validation.</p></div></div>
-          <div class="timeline-item"><div class="time">2025</div><div class="card timeline-card"><h3>Chassis Controls Intern · Ford Research & Advanced Engineering</h3><p>Steer-by-wire controls, redundancy strategy, HIL/vehicle validation, calibration, and CAN/EPAS integration on a research platform.</p></div></div>
-          <div class="timeline-item"><div class="time">2024</div><div class="card timeline-card"><h3>Research Assistant · Clemson University</h3><p>Vehicle dynamics testing, DAQ, state estimation, proving-ground validation, and research on adaptive filtering for vehicle state estimation.</p></div></div>
-          <div class="timeline-item"><div class="time">2018–2023</div><div class="card timeline-card"><h3>Chassis Testing & Validation · Royal Enfield</h3><p>ABS calibration, homologation, DVPR execution, prototype validation, root-cause analysis, and global motorcycle platform launch support.</p></div></div>
+
+          <!-- RIVIAN VW -->
+          <div class="timeline-item">
+            <div class="time">Nov 2025 – Present</div>
+
+            <div class="experience-card">
+              <div class="experience-logo-panel">
+                <img src="assets/logos/Rivian.png" alt="Ford logo">
+                <!-- Optional logo image later:
+            <img src="assets/logos/rv-tech.png" alt="Rivian Volkswagen Group Technologies logo">
+            -->
+              </div>
+
+              <div class="experience-content">
+                <h3>Systems Test & Integration Engineer</h3>
+                <p><strong>Rivian Volkswagen Group Technologies · Vehicle Motion / Propulsion Controls · Irvine,
+                    CA</strong></p>
+                <p>
+                  Own feature-level and regression validation for vehicle motion and propulsion
+                  control software across R1 and EDV platforms, supporting OTA releases,
+                  merge releases, and supplier ECU firmware updates.
+                </p>
+
+                <details class="experience-details">
+                  <summary>View responsibilities</summary>
+                  <ul>
+                    <li>Translate vehicle dynamics control requirements into SIL, HIL/Dyno HIL, and in-vehicle
+                      verification activities.</li>
+                    <li>Validate CAN/LIN/UDS and Automotive Ethernet interfaces for ECU integration and release
+                      readiness.</li>
+                    <li>Automate Python-based test plans and post-processing workflows with traceability through JAMA,
+                      JIRA, GitLab CI/CD, and quality metrics.</li>
+                    <li>Collaborate with controls, software integration, and supplier teams to triage issues and support
+                      software release sign-off.</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORD -->
+          <div class="timeline-item">
+            <div class="time">May 2025 – Jul 2025</div>
+
+            <div class="experience-card">
+              <div class="experience-logo-panel">
+                <img src="assets/logos/Ford.png" alt="Ford logo">
+                <!-- Optional logo image later:
+            <img src="assets/logos/ford.png" alt="Ford logo">
+            -->
+              </div>
+
+              <div class="experience-content">
+                <h3>Chassis Controls Software & Systems Intern</h3>
+                <p><strong>Ford Motor Company · Research & Advanced Engineering · Dearborn, MI</strong></p>
+                <p>
+                  Led deployment and real-time validation of a dual-redundant steer-by-wire platform
+                  from concept through integration, executing MIL, HIL, and proving-ground verification
+                  for motion-control functionality and robustness.
+                </p>
+
+                <details class="experience-details">
+                  <summary>View responsibilities</summary>
+                  <ul>
+                    <li>Developed and integrated real-time steer-by-wire control software on dSPACE MicroAutoBox ECU.
+                    </li>
+                    <li>Validated CAN interfaces, redundancy behavior, calibration changes, and vehicle response.</li>
+                    <li>Supported prototype bring-up and hardware/software debugging using oscilloscopes, DMMs, and
+                      power supplies across bench, HIL, and in-vehicle environments.</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- CLEMSON -->
+          <div class="timeline-item">
+            <div class="time">Jan 2024 – Apr 2025</div>
+
+            <div class="experience-card">
+              <div class="experience-logo-panel">
+                <img src="assets/logos/CU_ICAR.png" alt="Ford logo">
+                <!-- Optional logo image later:
+            <img src="assets/logos/clemson.png" alt="Clemson University logo">
+            -->
+              </div>
+
+              <div class="experience-content">
+                <h3>Vehicle Dynamics & Controls Engineer / Graduate Research Assistant</h3>
+                <p><strong>Clemson University · Deep Orange 16 · Greenville, SC</strong></p>
+                <p>
+                  Developed physics-based vehicle dynamics control strategies and validation workflows
+                  for a high-voltage 4-wheel hub-motor vehicle platform.
+                </p>
+
+                <details class="experience-details">
+                  <summary>View responsibilities</summary>
+                  <ul>
+                    <li>Developed Direct Yaw Moment Control, supervisory brake-by-wire logic, and active suspension
+                      validation workflows.</li>
+                    <li>Designed MIL/HIL setups for brake-by-wire and active suspension systems.</li>
+                    <li>Mapped ISO 26262-oriented fault responses to test cases, fault-injection scenarios, and
+                      fail-safe behavior.</li>
+                    <li>Led vehicle instrumentation, sensor integration, and dynamic testing using CAN, IMU,
+                      accelerometer, and ride-height data.</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- ROYAL ENFIELD -->
+          <div class="timeline-item">
+            <div class="time">Aug 2018 – Jun 2023</div>
+
+            <div class="experience-card">
+              <div class="experience-logo-panel">
+                <img src="assets/logos/RE.png" alt="Ford logo">
+                <!-- Optional logo image later:
+            <img src="assets/logos/royal-enfield.png" alt="Royal Enfield logo">
+            -->
+              </div>
+
+              <div class="experience-content">
+                <h3>Assistant Manager, Product Development – Chassis Testing & Validation</h3>
+                <p><strong>Royal Enfield · Chennai, India</strong></p>
+                <p>
+                  Managed chassis systems integration and verification activities across motorcycle
+                  platforms, with focus on ABS calibration, validation planning, and design issue resolution.
+                </p>
+
+                <details class="experience-details">
+                  <summary>View responsibilities</summary>
+                  <ul>
+                    <li>Led ABS calibration and component-/vehicle-level test planning using dynamic vehicle data.</li>
+                    <li>Supported repeatable verification workflows and compliance alignment with ECE, FMVSS, and Indian
+                      standards.</li>
+                    <li>Resolved development issues through benchmarking, root-cause analysis, validation of design
+                      changes, and cross-functional collaboration.</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <section class="section" id="github">
+    <!-- EDUCATION -->
+    <section class="section" id="education">
       <div class="container">
-        <span class="kicker">GitHub Structure</span>
-        <h2>Pinned repositories that sell the right profile</h2>
-        <p class="intro">Replace placeholder repo links with your actual repos as you build them. This static site is ready for GitHub Pages publishing.</p>
-        <table class="repo-table" aria-label="Recommended repositories">
-          <thead><tr><th>Repository</th><th>Purpose</th><th>Stack</th></tr></thead>
-          <tbody>
-            <tr><td>sdv-validation-dashboard</td><td>Release readiness, test status, defects, signal health</td><td>Python · Streamlit · Plotly · SQLite</td></tr>
-            <tr><td>can-signal-viewer-gui</td><td>DBC decoding, CAN trace, signal plotting, validation checks</td><td>PyQt · cantools · pandas</td></tr>
-            <tr><td>hil-test-automation-suite</td><td>YAML test cases, simulated HIL execution, reports</td><td>Python · pytest · Jinja2</td></tr>
-            <tr><td>vehicle-controls-simulator</td><td>Vehicle dynamics, yaw control, DYC visualization</td><td>Python · SciPy · Plotly</td></tr>
-            <tr><td>adaptive-kalman-filter-dashboard</td><td>State estimation tuning and consistency diagnostics</td><td>Python · NumPy · Streamlit</td></tr>
-            <tr><td>telemetry-log-analyzer</td><td>KPI extraction, anomaly detection, engineering summary</td><td>pandas · Plotly · SQLite</td></tr>
-          </tbody>
-        </table>
+        <span class="kicker">Education</span>
+        <h2>Academic foundation in automotive engineering, vehicle dynamics, and mechanical systems.</h2>
+        <p class="intro">
+          Graduate and undergraduate training that supports my work in vehicle controls,
+          systems integration, validation, modeling, and software-defined vehicle engineering.
+        </p>
+
+        <div class="timeline" style="margin-top:24px">
+
+          <!-- CLEMSON -->
+          <div class="timeline-item">
+            <div class="time">Aug 2023 – Aug 2025</div>
+
+            <div class="experience-card education-card">
+              <div class="experience-logo-panel">
+                <!-- Replace with your actual Clemson logo file if available -->
+                <img src="assets/logos/CU_ICAR.png" alt="Clemson University logo">
+              </div>
+
+              <div class="experience-content">
+                <h3>Master of Science in Automotive Engineering</h3>
+                <p><strong>Clemson University · International Center for Automotive Research</strong></p>
+                <p>
+                  Concentration in Vehicle Dynamics & Controls, with graduate work focused on
+                  vehicle motion control, state estimation, model-based validation, HIL testing,
+                  and automotive systems integration.
+                </p>
+
+                <details class="experience-details">
+                  <summary>View academic focus</summary>
+                  <ul>
+                    <li>Vehicle Dynamics & Controls, chassis systems, and motion-control validation.</li>
+                    <li>Model-based development using MATLAB, Simulink, Stateflow, and CarSim.</li>
+                    <li>Graduate research and Deep Orange work involving brake-by-wire, torque vectoring, active
+                      suspension, HIL validation, and vehicle instrumentation.</li>
+                    <li>State estimation and sensor fusion work involving Kalman filtering, vehicle dynamics models, and
+                      validation metrics.</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- SSN -->
+          <div class="timeline-item">
+            <div class="time">Aug 2014 – May 2018</div>
+
+            <div class="experience-card education-card">
+              <div class="experience-logo-panel">
+                <!-- Replace with your actual SSN logo file if available -->
+                <img src="assets/logos/ssn.png" alt="SSN College of Engineering logo">
+              </div>
+
+              <div class="experience-content">
+                <h3>Bachelor of Engineering in Mechanical Engineering</h3>
+                <p><strong>SSN College of Engineering · Chennai, Tamil Nadu, India</strong></p>
+                <p>
+                  Undergraduate foundation in mechanical engineering, dynamics, design,
+                  manufacturing, thermal systems, materials, and core engineering analysis.
+                </p>
+
+                <details class="experience-details">
+                  <summary>View academic foundation</summary>
+                  <ul>
+                    <li>Mechanical systems, engineering mechanics, dynamics, machine design, and manufacturing
+                      processes.</li>
+                    <li>Thermal engineering, fluid mechanics, materials, and mechanical design fundamentals.</li>
+                    <li>Foundation for later work in chassis testing, vehicle validation, controls, and automotive
+                      systems engineering.</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
+
   </main>
 
+  <!-- CONTACT / FOOTER -->
   <footer class="footer" id="contact">
     <div class="container footer-grid">
-      <div><strong>Ashwin Kumar Rangarajan</strong><br/>Automotive Controls & Software Systems Engineer<br/>Irvine, CA · Open to SDV, controls, validation, and systems roles</div>
-      <div><a class="btn" href="mailto:ashwintwister@gmail.com">Email</a> <a class="btn" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">GitHub</a></div>
-      <div>© <span data-year></span> · Built for GitHub Pages</div>
+      <div>
+        <strong>Ashwin Kumar Rangarajan</strong><br />
+        Automotive Controls & Software Systems Engineer<br />
+        Irvine, CA · Open to SDV, Controls, Validation and Systems Integration roles
+      </div>
+
+      <div>
+        <a class="btn" href="mailto:ashwintwister@gmail.com">Email</a>
+        <a class="btn" href="https://github.com/AshwinK77/portfolio_sd_updated" target="_blank"
+          rel="noreferrer">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/ashwin-kumar-rangarajan/" target="_blank"
+          rel="noreferrer">LinkedIn</a>
+        <a class="btn" href="documents/Ashwin_Rangarajan_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      </div>
+
+      <div>
+        © <span data-year></span> · Built for GitHub Pages
+      </div>
     </div>
   </footer>
+
   <script src="assets/app.js"></script>
 </body>
+
 </html>
