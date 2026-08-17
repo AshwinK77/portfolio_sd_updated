@@ -1241,3 +1241,12 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+/* Larger premium section labels */
+.kicker,
+.eyebrow {
+  font-size: 1.08rem;
+  letter-spacing: .1em;
+  font-weight: 900;
+  text-transform: uppercase;
+}

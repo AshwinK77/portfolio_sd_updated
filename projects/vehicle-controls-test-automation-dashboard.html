@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vehicle Controls Test Automation Dashboard | Ashwin Kumar Rangarajan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="nav"><div class="container nav-inner"><a class="logo" href="../index.html"><span class="logo-mark">AK</span><span>Ashwin K. Rangarajan</span></a><nav class="nav-links"><a href="../index.html#projects">Projects</a><a href="../index.html#domains">Domains</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></nav><button class="btn small mobile-menu" data-mobile-toggle>Menu</button></div></header>
+  <main>
+    <section class="project-hero"><div class="container"><div class="breadcrumb"><a href="../index.html">Home</a> / Projects</div><span class="kicker">Flagship Software Systems Project</span><h1>Vehicle Controls Test Automation Dashboard</h1><p class="lede">A Databricks-enabled automation dashboard for track and high-speed vehicle-controls validation, connecting test metadata to cloud telemetry, feature-specific post-processing, testcase writeback, regression status, and failure prioritization.</p><div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">SQLite</span><span class="tag">Validation</span><span class="tag">SDV</span></div><div class="hero-actions"><a class="btn primary" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">View GitHub</a><a class="btn" href="../index.html#projects">Back to Projects</a></div></div></section>
+    <section class="section"><div class="container project-layout">
+      <aside class="sidebar"><div class="card"><strong>Case Study Sections</strong><a href="#problem">Problem</a><a href="#architecture">Architecture</a><a href="#features">Features</a><a href="#validation">Validation</a><a href="#layout">GUI Layout</a><a href="#next">Next Steps</a></div></aside>
+      <article class="card content-card">
+        <section id="problem"><h2>1. Engineering Problem</h2><p>Track and high-speed controls testing generates large telemetry datasets across torque vectoring, ABS, traction control, and torque-differential features. The engineering challenge is to retrieve only the signals relevant to each test window, automate feature-specific analysis, preserve traceability to the testcase/test plan, and expose regression status by vehicle variant and test cycle.</p><div class="callout"><strong>Portfolio goal:</strong> Make the project read like an engineering tool used for integration, validation, debugging, or controls development — not just a classroom exercise.</div></section>
+        <section id="architecture"><h2>2. System Architecture</h2><div class="diagram">Test Timestamps + Vehicle / Variant Metadata
+        ↓
+Databricks / Cloud Telemetry Query
+        ↓
+Relevant Signal Extraction → CSV Dataset
+        ↓
+Feature Router → TV / ABS / TCS / Torque-Diff Post-Processing
+        ↓
+Metrics + Pass/Fail + Failure Classification
+        ↓
+Testcase / Test-Plan Writeback + Regression Dashboard</div></section>
+        <section id="features"><h2>3. Core Features</h2><div class="split"><div><h3>Tool Features</h3><ul><li>Read test timestamps, vehicle, variant, build, and test-cycle metadata</li><li>Query Databricks/cloud telemetry for only the signals required by the selected controls feature</li><li>Export the synchronized test window as CSV and route it to the appropriate Python post-processing script</li><li>Write calculated metrics, pass/fail results, and evidence back to the testcase/test plan</li><li>Track regression status across variants and test cycles with failure type and priority</li></ul></div><div><h3>Validation Metrics</h3><ul><li>Pass rate by feature, variant, build, and test cycle</li><li>Automated vs completed post-processing count</li><li>Failure type distribution and P1/P2/P3 priority</li><li>Regression trend for Torque Vectoring, ABS, TCS, and Torque Differential</li><li>Traceability from cloud dataset to testcase result and evidence</li></ul></div></div></section>
+        <section id="validation"><h2>4. Validation Evidence to Include</h2><p>For the final version, add screenshots/GIFs, sample input files, test-case screenshots, plots, and a short report. A recruiter should be able to see the inputs, processing workflow, outputs, and engineering decision.</p><ul><li>Architecture diagram</li><li>Sample data folder</li><li>README with setup instructions</li><li>Screenshot/GIF of the GUI</li><li>Validation report or results table</li></ul></section>
+        <section id="layout"><h2>5. GUI / Dashboard Mock Layout</h2><div class="mock-screen"><div class="mock-top"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div><div class="mock-body"><div class="diagram">Variant: R1T Performance | Cycle: Track-03 | Build: 2026.08.142
+REGRESSION 92% | 128 RUNS | 6 OPEN FAILURES | 124 POST-PROCESSED
+TV: PASS | ABS: 2 FAIL | TCS: PASS | TORQUE DIFF: REVIEW
+P1: ABS pressure build-up | P1: TV yaw tracking | P2: TCS slip spike</div><div class="bar w85"></div><div class="bar w55"></div><div class="bar w70"></div><div class="bar w35"></div></div></div></section>
+        <section id="next"><h2>6. Build Checklist</h2><ul><li>Create the public GitHub repository with this exact project name.</li><li>Add <code>README.md</code>, <code>requirements.txt</code>, <code>src/</code>, <code>data/sample/</code>, <code>assets/screenshots/</code>, and <code>docs/</code>.</li><li>Add one small working demo before adding advanced features.</li><li>Record a 20–40 second GIF of the GUI and place it at the top of the README.</li><li>Link the repo from the portfolio homepage.</li></ul></section>
+      </article>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="container footer-grid"><div><strong>Ashwin Kumar Rangarajan</strong><br/>Automotive Controls & Software Systems Engineer</div><div><a class="btn" href="mailto:ashwintwister@gmail.com">Email</a> <a class="btn" href="https://github.com/AshwinK77" target="_blank" rel="noreferrer">GitHub</a></div><div>© <span data-year></span></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>
