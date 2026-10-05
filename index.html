@@ -1034,6 +1034,25 @@
       }
     }
   </style>
+  <script id="portfolio-analytics">
+    (function () {
+      var option = new URLSearchParams(location.search).get('analytics');
+      var excluded = option === 'off';
+      try {
+        if (option === 'off') localStorage.setItem('portfolio.analytics.disabled', '1');
+        if (option === 'on') localStorage.removeItem('portfolio.analytics.disabled');
+        excluded = excluded || localStorage.getItem('portfolio.analytics.disabled') === '1';
+      } catch (error) { excluded = true; }
+      var host = location.hostname;
+      var local = location.protocol === 'file:' || host === 'localhost' || host.endsWith('.localhost') || host === '::1' || host === '[::1]' || /^127\./.test(host) || /^192\.168\./.test(host) || /^10\./.test(host) || /^172\.(1[6-9]|2[0-9]|3[01])\./.test(host);
+      if (excluded || local) return;
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'yt518xz650');
+    })();
+  </script>
 </head>
 
 
