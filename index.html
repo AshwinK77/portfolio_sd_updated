@@ -15,6 +15,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/styles.css" />
+  <script id="portfolio-theme-init">
+    (() => {
+      try {
+        const selected = localStorage.getItem('portfolio-theme-v2');
+        document.documentElement.dataset.theme = selected === 'light' ? 'light' : 'dark';
+      } catch (_) { document.documentElement.dataset.theme = 'dark'; }
+    })();
+  </script>
+
 
 
   <style>
@@ -1399,39 +1408,563 @@
     }
   </style>
   <style id="hero-intro-slideshow-style">
+    /* Sliding expertise cards: restrained, slower horizontal transitions. */
     .hero-intro-slideshow {
       margin: 20px 0;
-      padding: 20px 22px;
-      border: 1px solid rgba(88, 199, 255, .25);
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(88, 199, 255, .08), rgba(34, 55, 83, .18));
+      padding: 0;
+      border: 0;
+      width: 100%;
       box-sizing: border-box;
-      width: 100%
     }
 
     .hero-intro-slides {
-      display: grid
+      display: grid;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(88, 199, 255, .27);
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(88, 199, 255, .07), rgba(34, 55, 83, .18));
+      isolation: isolate;
     }
 
     .hero-intro-slideshow .hero-intro-slide {
       grid-area: 1/1;
+      align-self: center;
       margin: 0;
+      padding: 18px 22px 23px;
       opacity: 0;
       visibility: hidden;
-      transition: opacity .6s ease, visibility 0s .6s;
-      pointer-events: none
+      transform: translateX(65px);
+      transition: transform 1.25s cubic-bezier(.22, 1, .36, 1), opacity 1.25s ease, visibility 0s 1.25s;
+      pointer-events: none;
+    }
+
+    .hero-intro-slideshow .hero-intro-slide::before {
+      content: attr(data-expertise);
+      display: block;
+      margin-bottom: 10px;
+      font: 800 11px/1.3 Inter, system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #53ceff;
     }
 
     .hero-intro-slideshow .hero-intro-slide.is-active {
       opacity: 1;
       visibility: visible;
-      transition: opacity .6s ease, visibility 0s
+      transform: translateX(0);
+      transition: transform 1.25s cubic-bezier(.22, 1, .36, 1), opacity 1.25s ease, visibility 0s;
+      z-index: 1;
+    }
+
+    .hero-intro-slideshow .hero-intro-slide.is-exiting {
+      opacity: 0;
+      visibility: visible;
+      transform: translateX(-65px);
+      transition: transform 1.25s cubic-bezier(.22, 1, .36, 1), opacity 1.25s ease, visibility 0s 1.25s;
+    }
+
+    /* Edge-attached progress line, matching the comparison animation preview. */
+    .hero-intro-progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      z-index: 5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-intro-progress-fill {
+      display: block;
+      height: 100%;
+      width: 100%;
+      border-radius: 0;
+      background: linear-gradient(90deg, #36d3ee 0%, #54caff 60%, #83adff 100%);
+      box-shadow: none;
+      transform: scaleX(0);
+      transform-origin: left center;
+      will-change: transform;
+    }
+
+    @media (max-width: 650px) {
+      .hero-intro-slideshow .hero-intro-slide {
+        padding: 16px 18px 23px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .hero-intro-slideshow .hero-intro-slide,
+      .hero-intro-slideshow .hero-intro-slide.is-active,
+      .hero-intro-slideshow .hero-intro-slide.is-exiting {
+        transition: none;
+        transform: none;
+      }
+
+      /* Motion preference is honored for sliding text; countdown remains functional. */
+    }
+  </style>
+
+  <style id="portfolio-light-dark-themes">
+    /* Dark remains the original presentation. Override colors only in light mode. */
+    /* Accessible sliding theme switch: moon = dark, sun = light. */
+    .portfolio-theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 6px 9px;
+      border: 1px solid #344358;
+      border-radius: 999px;
+      background: #101c2b;
+      color: #e9f4ff;
+      cursor: pointer;
+      font: 700 12px/1 Inter, system-ui, sans-serif;
+      transition: background-color .25s, border-color .25s, color .25s;
+    }
+
+    .portfolio-theme-toggle:hover {
+      border-color: #57c9ff;
+    }
+
+    .portfolio-theme-toggle:focus-visible {
+      outline: 2px solid #37bdf5;
+      outline-offset: 3px;
+    }
+
+    .portfolio-theme-toggle .theme-switch-track {
+      position: relative;
+      width: 52px;
+      height: 27px;
+      border-radius: 999px;
+      background: #263c54;
+      border: 1px solid #547189;
+      flex: none;
+      transition: background .3s, border-color .3s;
+    }
+
+    .portfolio-theme-toggle .theme-switch-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: #dcecff;
+      box-shadow: 0 1px 5px #0005;
+      transition: transform .32s cubic-bezier(.2, .8, .2, 1), background .3s;
+    }
+
+    .portfolio-theme-toggle .theme-symbol {
+      font-size: 15px;
+      line-height: 1;
+      opacity: .5;
+      transition: opacity .2s;
+    }
+
+    .portfolio-theme-toggle .theme-moon {
+      opacity: 1;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-switch-track {
+      background: #95d6fc;
+      border-color: #71b4db;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-switch-thumb {
+      transform: translateX(25px);
+      background: #fff;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-sun {
+      opacity: 1;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-moon {
+      opacity: .5;
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+    }
+
+    html[data-theme="light"] body {
+      background: #f4f7fb !important;
+      color: #172b43 !important;
+    }
+
+    html[data-theme="light"] .nav,
+    html[data-theme="light"] header.nav {
+      background: rgba(255, 255, 255, .97) !important;
+      border-bottom-color: #cfdaea !important;
+    }
+
+    html[data-theme="light"] .nav a,
+    html[data-theme="light"] .nav .logo,
+    html[data-theme="light"] .nav-links a {
+      color: #173450 !important;
+    }
+
+    html[data-theme="light"] .nav a:hover {
+      color: #007ebc !important;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle {
+      background: #eaf2fb;
+      color: #12334d;
+      border-color: #bfd2e5;
+    }
+
+    html[data-theme="light"] :is(h1, h2, h3, h4, h5, h6) {
+      color: #152d46;
+    }
+
+    html[data-theme="light"] :is(p, li, dd, dt, blockquote) {
+      color: inherit;
+    }
+
+    html[data-theme="light"] :is(.muted, .subtle, .subtitle, .lede, small) {
+      color: #526981;
+    }
+
+    html[data-theme="light"] :is(.card, .hero-card, .panel, .tile, .stat, .contact-card, .project-card, .section-card, .experience-card, .education-card) {
+      background: #ffffff !important;
+      color: #243a51 !important;
+      border-color: #d0deec !important;
+    }
+
+    html[data-theme="light"] .hero-intro-slides {
+      background: linear-gradient(135deg, #fff, #eaf4fc) !important;
+      border-color: #a7cbe5 !important;
+    }
+
+    html[data-theme="light"] .hero-intro-slide {
+      color: #315876 !important;
+    }
+
+    html[data-theme="light"] .hero-intro-slide::before {
+      color: #087bb3 !important;
+    }
+
+    html[data-theme="light"] .hero-intro-progress-fill {
+      background: linear-gradient(90deg, #0096d8, #57bbf5) !important;
+    }
+
+    html[data-theme="light"] :is(.btn:not(.primary), button.btn:not(.primary)) {
+      color: #193750;
+      background: #fff;
+      border-color: #becfe0;
+    }
+
+    html[data-theme="light"] :is(.btn.primary, a.btn.primary) {
+      color: #062335 !important;
+    }
+
+    html[data-theme="light"] :is(.tag, .chip, .pill) {
+      color: #28506c;
+      background: #edf4fb;
+      border-color: #c8dbe9;
+    }
+
+    html[data-theme="light"] :is(input, textarea, select) {
+      background: #fff;
+      color: #20384f;
+      border-color: #bbcfe1;
+    }
+
+    html[data-theme="light"] footer {
+      background: #eaf1f8 !important;
+      color: #456078 !important;
+      border-top-color: #d0ddeb;
+    }
+
+    html[data-theme="light"] footer a {
+      color: #126899 !important;
+    }
+
+    html[data-theme="light"] #section-dots {
+      background: rgba(255, 255, 255, .92);
+    }
+
+    html[data-theme="light"] .section-dot {
+      border-color: #5a7c97;
+    }
+
+    html[data-theme="light"] .section-dot::after {
+      background: #fff;
+      color: #15324d;
+      border: 1px solid #cad9e8;
+    }
+
+    html[data-theme="light"] .portfolio-cover {
+      border-color: #b7cde0;
+    }
+
+    html[data-theme="light"] .portfolio-profile-photo {
+      border-color: #f4f7fb;
+    }
+
+    /* Preserve the dashboard's colored status indicators while switching its surfaces. */
+    html[data-theme="light"] .automation-dashboard {
+      --line: #c5d7e6;
+      --muted: #57708a;
+      color: #17344e;
+      background: linear-gradient(145deg, #fff, #edf5fc) !important;
+      border-color: #c4d8e7 !important;
+    }
+
+    html[data-theme="light"] .automation-dashboard :is(h3, h4, th, p, span, label) {
+      color: inherit;
+    }
+
+    html[data-theme="light"] .automation-dashboard :is(.dashboard-panel, .dashboard-report, .automation-kpi) {
+      background: #f6faff !important;
+      color: #19364d !important;
+      border-color: #cbdce9 !important;
+    }
+
+    html[data-theme="light"] .automation-dashboard :is(.dashboard-release, .dashboard-filter-row select, .dashboard-panel-head select) {
+      background: #eaf4fd !important;
+      color: #183a55 !important;
+      border-color: #bfd5e6 !important;
+    }
+
+    html[data-theme="light"] .automation-dashboard :is(.dashboard-mileage-track, .dashboard-table td) {
+      border-color: #d6e2eb;
+    }
+
+    html[data-theme="light"] .automation-dashboard .dashboard-mileage-track {
+      background: #d7e3ee;
+    }
+
+    html[data-theme="light"] .automation-dashboard .dashboard-donut::before {
+      background: #f6faff;
+    }
+
+    html[data-theme="light"] .automation-dashboard .dashboard-badge {
+      color: inherit;
+    }
+
+    html[data-theme="light"] .automation-dashboard .automation-kpi strong {
+      color: #0879b5;
+    }
+
+    html[data-theme="light"] #projects .visual-release-card {
+      background: #fff !important;
+      border-color: #cfdeeb !important;
+    }
+
+    html[data-theme="light"] #projects .visual-release-card .flow-step {
+      background: #eff6fc;
+      border-color: #caddea;
+    }
+
+    html[data-theme="light"] #projects .visual-release-card .flow-step strong {
+      color: #1b3f5a;
+    }
+
+    html[data-theme="light"] #projects .visual-release-card .project-summary {
+      color: #506982;
+    }
+
+    html[data-theme="light"] #about.about-visual-section {
+      color: #18344d;
+    }
+
+    html[data-theme="light"] #about.about-visual-section :is(.about-visual-card, .about-content, .about-card) {
+      background-color: #fff;
+      color: #213c53;
+      border-color: #ccdae9;
+    }
+
+    html[data-theme="light"] a:not(.btn) {
+      text-decoration-color: currentColor;
+    }
+
+    @media (max-width:650px) {
+      .portfolio-theme-toggle {
+        padding: 5px 7px;
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      .portfolio-theme-toggle,
+      .portfolio-theme-toggle .theme-switch-track,
+      .portfolio-theme-toggle .theme-switch-thumb {
+        transition: none;
+      }
+    }
+  </style>
+
+  <style id="portfolio-light-contrast-repair">
+    /* Correct BOTH methodology and application-skillset flip-card faces. */
+    html[data-theme="light"] #domains .flip-card,
+    html[data-theme="light"] #skills .flip-card {
+      border-color: #bdd4e6 !important;
+    }
+
+    html[data-theme="light"] :is(#domains, #skills) :is(.flip-front, .flip-back) {
+      background: linear-gradient(155deg, #ffffff, #eaf4fb) !important;
+      color: #17334c !important;
+      border-color: #bfd6e8 !important;
+    }
+
+    html[data-theme="light"] :is(#domains, #skills) :is(.flip-front, .flip-back) h3 {
+      color: #0b4770 !important;
+      opacity: 1 !important;
+    }
+
+    html[data-theme="light"] :is(#domains, #skills) :is(.flip-front, .flip-back) p {
+      color: #34536d !important;
+      opacity: 1 !important;
+    }
+
+    /* Company, organizational unit and location on the experience timeline. */
+    html[data-theme="light"] :is(#experience, #education) .experience-content>p>strong,
+    html[data-theme="light"] .timeline .experience-content>p>strong {
+      color: #315572 !important;
+      opacity: 1 !important;
+    }
+
+    html[data-theme="light"] .timeline .experience-content h3 {
+      color: #102e49 !important;
+    }
+
+    html[data-theme="light"] .timeline .experience-content>p:not(:has(strong)) {
+      color: #24445e !important;
+    }
+
+    html[data-theme="light"] .timeline .experience-details {
+      color: #315572 !important;
+    }
+  </style>
+
+  <style id="portfolio-theme-switch-refinement">
+    /* Only the interior switch is pill-shaped; no enclosing oval. */
+    .portfolio-theme-toggle,
+    html[data-theme="light"] .portfolio-theme-toggle {
+      padding: 2px 0 !important;
+      gap: 11px !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .portfolio-theme-toggle:hover,
+    html[data-theme="light"] .portfolio-theme-toggle:hover {
+      background: transparent !important;
+      border: 0 !important;
+    }
+
+    .portfolio-theme-toggle .theme-symbol {
+      width: 21px;
+      height: 21px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: .44;
+      transition: color .25s, opacity .25s, filter .25s;
+    }
+
+    .portfolio-theme-toggle .theme-symbol svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    .portfolio-theme-toggle .theme-moon {
+      color: #7fcaff;
+      opacity: 1;
+      filter: drop-shadow(0 0 5px #60baff80);
+    }
+
+    .portfolio-theme-toggle .theme-sun {
+      color: #a3adc0;
+      opacity: .55;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-moon {
+      color: #71849a;
+      opacity: .48;
+      filter: none;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-sun {
+      color: #d88b0b;
+      opacity: 1;
+      filter: drop-shadow(0 0 4px #f3b34080);
+    }
+
+    .portfolio-theme-toggle .theme-switch-track {
+      width: 57px;
+      height: 30px;
+      position: relative;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #132c49, #23466c) !important;
+      border: 1px solid #47749b !important;
+      box-shadow: inset 0 2px 5px #06101f99, 0 0 0 1px #ffffff0a;
+      transition: background .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .portfolio-theme-toggle .theme-switch-thumb {
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(145deg, #ffffff, #bfdaf9) !important;
+      box-shadow: 0 2px 7px #0008, inset 0 1px 1px #fff;
+      transition: transform .38s cubic-bezier(.2, .85, .2, 1), background .3s;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-switch-track {
+      background: linear-gradient(135deg, #9fe0ff, #5db9f5) !important;
+      border-color: #499bd4 !important;
+      box-shadow: inset 0 1px 4px #2675a64d, 0 1px 4px #7fb6d54a;
+    }
+
+    html[data-theme="light"] .portfolio-theme-toggle .theme-switch-thumb {
+      transform: translateX(27px);
+      background: linear-gradient(145deg, #ffffff, #e9f5ff) !important;
+      box-shadow: 0 2px 6px #34698755, inset 0 1px 1px #fff;
+    }
+
+    .portfolio-theme-toggle:focus-visible {
+      outline: 2px solid #40c8ff !important;
+      outline-offset: 5px;
+      border-radius: 5px !important;
+    }
+
+    @media(max-width:650px) {
+
+      .portfolio-theme-toggle,
+      html[data-theme="light"] .portfolio-theme-toggle {
+        gap: 7px !important;
+      }
     }
 
     @media(prefers-reduced-motion:reduce) {
-      .hero-intro-slideshow .hero-intro-slide {
-        transition: none
+
+      .portfolio-theme-toggle .theme-switch-thumb,
+      .portfolio-theme-toggle .theme-symbol {
+        transition: none !important;
       }
+    }
+  </style>
+  <style id="slideshow-light-title-contrast">
+    /* Keep slideshow photo captions legible over the image in light mode. */
+    html[data-theme="light"] .portfolio-cover-caption-title {
+      color: #ffffff !important;
     }
   </style>
 </head>
@@ -1454,6 +1987,21 @@
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <button class="portfolio-theme-toggle" id="portfolio-theme-toggle" type="button" role="switch"
+        aria-label="Light mode" aria-checked="false" title="Toggle light and dark mode">
+        <span class="theme-symbol theme-moon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.8 15.8A9 9 0 0 1 8.2 3.2 9 9 0 1 0 20.8 15.8Z" />
+          </svg></span>
+        <span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
+        <span class="theme-symbol theme-sun" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+          </svg></span>
+      </button>
 
       <button class="btn small mobile-menu" data-mobile-toggle>Menu</button>
     </div>
@@ -1492,26 +2040,45 @@
 
           <div class="hero-intro-slideshow" id="hero-intro-slideshow" aria-label="Engineering introduction">
             <div class="hero-intro-slides">
-              <p class="lede hero-intro-slide is-active" aria-hidden="false">Software-defined vehicle integration and
-                validation, from ECU interfaces to vehicle-level performance.</p>
-              <p class="lede hero-intro-slide" aria-hidden="true">Vehicle motion controls and propulsion software
-                validated for reliable vehicle behavior.</p>
-              <p class="lede hero-intro-slide" aria-hidden="true">CAN/LIN/UDS diagnostics, HIL, and in-vehicle testing
-                used to verify system functionality.</p>
-              <p class="lede hero-intro-slide" aria-hidden="true">Telemetry analysis and regression testing supporting
-                software release readiness.</p>
+              <p data-expertise="Experience & delivery" class="lede hero-intro-slide is-active" aria-hidden="false"> 6+
+                years of automotive engineering
+                expertise, turning complex vehicle challenges into reliable, production-ready solutions.
+              </p>
+              <p data-expertise="Controls & vehicle dynamics" class="lede hero-intro-slide" aria-hidden="true">Bridging
+                controls, software, and vehicle dynamics to
+                transform advanced engineering concepts into
+                real-world vehicle performance.</p>
+              <p data-expertise="Requirements to release" class="lede hero-intro-slide" aria-hidden="true">From
+                requirements to road-ready systems, driving
+                seamless integration, rigorous validation, and software
+                release readiness.</p>
+              <p data-expertise="Vehicle motion systems" class="lede hero-intro-slide" aria-hidden="true">Engineering
+                the future of vehicle motion, with
+                hands-on expertise in steer-by-wire, brake-by-wire, ABS,
+                and torque vectoring.</p>
+              <p data-expertise="Simulation to validation" class="lede hero-intro-slide" aria-hidden="true">Connecting
+                simulation to real-world performance,
+                leveraging MIL/SIL/HIL and vehicle testing to deliver
+                robust, safety-critical functions.</p>
+              <p data-expertise="Software-defined vehicles" class="lede hero-intro-slide" aria-hidden="true">Driving
+                software-defined vehicle innovation, combining
+                deep controls knowledge, ECU integration, and
+                systematic problem-solving to deliver dependable vehicle functions.</p>
+              <div class="hero-intro-progress" aria-hidden="true"><span class="hero-intro-progress-fill"></span></div>
             </div>
 
           </div>
 
+          <!--
           <p class="hero-tags">
             Vehicle Controls · SDV Integration · HIL Validation · CAN Diagnostics · OTA Release Validation
           </p>
+          !-->
 
           <div class="hero-actions">
             <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn" href="https://drive.google.com/file/d/1BnslYirMe0d4QXCkgAZk8scsiWzWtGiy/view?usp=drive_link"
-              target="_blank" rel="noreferrer">Resume</a>
+            <a class="btn" href="portfolio_images/Resume%20-%20Ashwin%20Kumar%20Rangarajan.pdf" target="_blank"
+              rel="noreferrer">Resume</a>
             <a class="btn" href="https://github.com/AshwinK77/portfolio_sd_updated" target="_blank"
               rel="noreferrer">GitHub</a>
             <a class="btn" href="https://www.linkedin.com/in/ashwin-kumar-rangarajan/" target="_blank"
@@ -2419,8 +2986,8 @@
           rel="noreferrer">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/ashwin-kumar-rangarajan/" target="_blank"
           rel="noreferrer">LinkedIn</a>
-        <a class="btn" href="https://drive.google.com/file/d/1BnslYirMe0d4QXCkgAZk8scsiWzWtGiy/view?usp=drive_link"
-          target="_blank" rel="noreferrer">Resume</a>
+        <a class="btn" href="portfolio_images/Resume%20-%20Ashwin%20Kumar%20Rangarajan.pdf" target="_blank"
+          rel="noreferrer">Resume</a>
       </div>
 
       <div>
@@ -2630,20 +3197,19 @@
   <script>
     (() => {
       'use strict';
-      // ===== ADD YOUR PHOTO LINKS HERE =====
-      // Use direct image URLs or local paths, e.g. assets/photos/project-01.jpg.
-      // A Google Drive folder/share page is not a direct image URL.
-      const profilePhotoUrl = 'https://drive.google.com/thumbnail?id=1fg5jVdEX_QJd_7lMWXaogePfRp_CmF2E&sz=w1000';
+      // ===== LOCAL PORTFOLIO IMAGES =====
+      // Paths are relative to index.html; keep portfolio_images in the repository root.
+      const profilePhotoUrl = 'portfolio_images/Profile_Pic.jpg';
       const projectImageUrls = [
-        'https://drive.google.com/thumbnail?id=1cgchFXn8LHsUhOv6aJBjKsRa70DRwAEG&sz=w2000', // Photo 1
-        'https://drive.google.com/thumbnail?id=1Re-pbLy-Vkz_oNAwK9KUIKLLZmNUR2OA&sz=w2000', // Photo 2
-        'https://drive.google.com/thumbnail?id=18krqZs-dGhdEfatpmfKTiY7ViEhVXB-v&sz=w2000', // Photo 3
-        'https://drive.google.com/thumbnail?id=1CCuGTovLthch3PI1SnFd2GOeAZyhZGVh&sz=w2000', // Photo 4
-        'https://drive.google.com/thumbnail?id=1sA-_EoZ2ZFoTyCsUj5mhIyDn3zrVnHYh&sz=w2000', // Photo 5
-        'https://drive.google.com/thumbnail?id=1EoVR6J3u5r0PQWf5k6ltKQl659aIqXAv&sz=w2000', // Photo 6
-        'https://drive.google.com/thumbnail?id=1hh8Srd_gRt3VHWmZTIzWfGOO_toAz8yG&sz=w2000', // Photo 7
-        'https://drive.google.com/thumbnail?id=1jI5pT---00MSK1ZZuPr8D48ZTYWz1mGp&sz=w2000', // Photo 8
-        'https://drive.google.com/thumbnail?id=1JJ1Nr_UH_FmrLEUlV932_Ax4nY1N_q1J&sz=w2000' // Photo 9
+        'portfolio_images/Image_1.jpg', // Photo 1
+        'portfolio_images/Image_2.jpg', // Photo 2
+        'portfolio_images/Image_3.jpg', // Photo 3
+        'portfolio_images/Image_4.jpg', // Photo 4
+        'portfolio_images/Image_5.jpg', // Photo 5
+        'portfolio_images/Image_6.jpg', // Photo 6
+        'portfolio_images/Image_7.jpg', // Photo 7
+        'portfolio_images/Image_8.jpg', // Photo 8
+        'portfolio_images/Image_9.jpg' // Photo 9
       ];
       const projectImageCaptions = [
         "Off-Roading with Rivian | Borrego Springs, CA",
@@ -2823,10 +3389,75 @@
     (() => {
       const root = document.getElementById('hero-intro-slideshow'); if (!root) return;
       const slides = [...root.querySelectorAll('.hero-intro-slide')];
-      let index = 0, timer = null;
-      function show(next) { index = next; slides.forEach((slide, i) => { slide.classList.toggle('is-active', i === index); slide.setAttribute('aria-hidden', String(i !== index)); }); }
-      function schedule() { clearInterval(timer); timer = null; if (!document.hidden) timer = setInterval(() => show((index + 1) % slides.length), 5000); }
-      document.addEventListener('visibilitychange', schedule); schedule();
+      const fill = root.querySelector('.hero-intro-progress-fill');
+      const CYCLE_MS = 6500;
+      let index = 0, timer = null, progressAnimation = null;
+      function show(next) {
+        if (next === index) return;
+        const previous = slides[index];
+        previous.classList.remove('is-active');
+        previous.classList.add('is-exiting');
+        previous.setAttribute('aria-hidden', 'true');
+        index = next;
+        const incoming = slides[index];
+        incoming.classList.remove('is-exiting');
+        incoming.classList.add('is-active');
+        incoming.setAttribute('aria-hidden', 'false');
+        window.setTimeout(() => previous.classList.remove('is-exiting'), 1300);
+      }
+      function startProgress() {
+        if (!fill) return;
+        if (progressAnimation) progressAnimation.cancel();
+        fill.style.transform = 'scaleX(0)';
+        // Animate the actual element instead of depending on a CSS class/keyframe reset.
+        progressAnimation = fill.animate(
+          [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+          { duration: CYCLE_MS, easing: 'linear', fill: 'forwards' }
+        );
+      }
+      function schedule() {
+        clearInterval(timer);
+        timer = null;
+        if (progressAnimation) { progressAnimation.cancel(); progressAnimation = null; }
+        if (document.hidden) return;
+        startProgress();
+        timer = setInterval(() => {
+          show((index + 1) % slides.length);
+          startProgress();
+        }, CYCLE_MS);
+      }
+      document.addEventListener('visibilitychange', schedule);
+      schedule();
+      const headline = document.querySelector('.hero-grid h1');
+      if (headline) {
+        const scaleHeadline = () => {
+          headline.style.removeProperty('font-size');
+          const original = parseFloat(getComputedStyle(headline).fontSize);
+          if (Number.isFinite(original)) headline.style.fontSize = `${(original * 0.85).toFixed(2)}px`;
+        };
+        scaleHeadline();
+        window.addEventListener('resize', scaleHeadline, { passive: true });
+      }
+    })();
+  </script>
+  <script id="portfolio-theme-controls">
+    (() => {
+      const control = document.getElementById('portfolio-theme-toggle');
+      if (!control) return;
+      function renderTheme() {
+        const light = document.documentElement.dataset.theme === 'light';
+        control.setAttribute('aria-label', 'Light mode');
+        control.setAttribute('aria-checked', String(light));
+        control.setAttribute('title', light ? 'Switch to dark mode' : 'Switch to light mode');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', light ? '#f4f7fb' : '#08111e');
+      }
+      control.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('portfolio-theme-v2', next); } catch (_) { }
+        renderTheme();
+      });
+      renderTheme();
     })();
   </script>
 </body>
