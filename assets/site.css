@@ -2395,3 +2395,16 @@ html:not([data-theme="light"]) .cert-view{color:#7fd8ff}
 #contact .copy-mini.is-copied .ic-ok{display:block}
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 @media print{#contact .copy-mini{display:none!important}}
+#projects .proj-card .proj-win{margin:0 0 8px}
+#projects .proj-card .proj-win:has(+ .role-tags){margin-bottom:12px}
+
+/* project cards: solid gradient call-to-action */
+#projects .featured-story-link{display:inline-flex;align-items:center;gap:6px;padding:9px 18px!important;border-radius:999px;background:linear-gradient(135deg,#8febff,#a6bfff);color:#06111d!important;font-weight:700;text-decoration:none!important;transition:transform .2s ease,box-shadow .2s ease}
+#projects .featured-story-link:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(69,217,255,.3);text-decoration:none!important}
+#projects .featured-story-link:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px rgba(69,217,255,.55)}
+html[data-theme="light"] #projects .featured-story-link:focus-visible{outline-color:#17344e;box-shadow:none}
+#projects .proj-card .role-tags{margin-bottom:20px}
+
+/* standard light-blue primary button */
+.btn.primary,a.btn.primary{background:linear-gradient(135deg,#8febff,#a6bfff)!important;color:#06111d!important;border-color:transparent!important}
+.btn.primary:hover{box-shadow:0 8px 22px rgba(69,217,255,.3)}
