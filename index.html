@@ -26,7 +26,7 @@
 
 
 
-  <link rel="stylesheet" href="assets/site.css?v=98cbf221" />
+  <link rel="stylesheet" href="assets/site.css?v=177ec2f0" />
 
 
 
@@ -1175,7 +1175,13 @@
         by-wire systems.</p>
       <p class="contact-where">Irvine, CA · <a href="mailto:ashwintwister@gmail.com">ashwintwister@gmail.com</a> <button
           type="button" class="copy-mini" id="copy-email" data-email="ashwintwister@gmail.com"
-          aria-label="Copy email address">Copy</button></p>
+          aria-label="Copy email address" title="Copy email address"><svg class="ic-copy" viewBox="0 0 24 24" width="15"
+            height="15" aria-hidden="true" focusable="false">
+            <rect x="9" y="9" width="11" height="11" rx="2" />
+            <path d="M5 15V6a2 2 0 0 1 2-2h9" />
+          </svg><svg class="ic-ok" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">
+            <path d="M5 12.5l4.5 4.5L19 7.5" />
+          </svg></button><span class="sr-only" id="copy-status" role="status" aria-live="polite"></span></p>
       <div class="contact-actions">
         <a class="contact-action primary" href="Ashwin-Kumar-Rangarajan-Resume.pdf" download>Download Resume</a>
         <a class="contact-action" href="https://www.linkedin.com/in/ashwin-kumar-rangarajan/" target="_blank"
@@ -1785,8 +1791,8 @@
   <script>
     (() => {
       const b = document.getElementById('copy-email'); if (!b) return;
-      const label = b.textContent; let t;
-      const done = (ok) => { b.textContent = ok ? 'Copied ✓' : 'Copy failed'; clearTimeout(t); t = setTimeout(() => { b.textContent = label; }, 1800); };
+      let t; const st = document.getElementById('copy-status');
+      const done = (ok) => { b.classList.toggle('is-copied', ok); if (st) st.textContent = ok ? 'Email address copied' : 'Copy failed'; b.title = ok ? 'Copied!' : 'Copy failed'; clearTimeout(t); t = setTimeout(() => { b.classList.remove('is-copied'); b.title = 'Copy email address'; if (st) st.textContent = ''; }, 1800); };
       b.addEventListener('click', async () => {
         const text = b.dataset.email;
         try { await navigator.clipboard.writeText(text); done(true); }
